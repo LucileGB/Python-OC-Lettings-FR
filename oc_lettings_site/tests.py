@@ -14,7 +14,7 @@ def test_index_get(client):
 @pytest.mark.django_db
 def test_index_letting_get(client):
     response = client.get('/lettings/')
-#    print(response.content)
+    print(response.content)
     assert response.status_code == 200
 
 @pytest.mark.django_db
