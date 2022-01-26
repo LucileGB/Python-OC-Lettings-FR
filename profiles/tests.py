@@ -6,7 +6,7 @@ from django.urls import reverse
 @pytest.fixture(scope='session')
 def django_db_setup(django_db_setup, django_db_blocker):
     with django_db_blocker.unblock():
-        call_command('loaddata', 'profile_data.json')
+        call_command('loaddata', 'data.json')
 
 @pytest.mark.django_db
 def test_index_profiles_get(client):
