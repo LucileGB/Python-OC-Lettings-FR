@@ -52,5 +52,5 @@ workflows:
     jobs:
       - build-and-push
           filters:
-            only:
-              - master
+              only:
+                - master
