@@ -17,9 +17,7 @@ jobs:
   build-and-test: # This is the name of the job, feel free to change it to better match what you're trying to do!
     # These next lines defines a Docker executors: https://circleci.com/docs/2.0/executor-types/
     # You can specify an image from Dockerhub or use one of the convenience images from CircleCI's Developer Hub
-    # A list of available CircleCI Docker convenience images are available here: https://circleci.com/developer/images/image/cimg/python
     # The executor is the environment in which the steps below will be executed - below will use a python 3.10.2 container
-    # Change the version below to your required version of python
     docker:
       - image: cimg/python:3.10.2
     # Checkout the code as the first step. This is a dedicated CircleCI step.
@@ -38,9 +36,21 @@ jobs:
           # This assumes pytest is installed via the install-package step above
           command: pytest
 
-#FUTURE DOCKER BELOW
-#      - setup_remote_docker:
-#          docker_layer_caching: true
+      - setup_remote_docker:
+          docker_layer_caching: true
+
+      - run:
+          name: Build and push Docker image
+          command: |
+            docker build -t $DOCKER_IMAGE:$CIRCLE_BUILD_NUM .
+            echo $DOCKER_PWD | docker login -u $DOCKER_USER --p $DOCKER_PASS
+            docker push DOCKER_IMAGE:$CIRCLE_BUILD_NUM
+
+# TO ADAPT TO HEROKU
+#      - run:
+#          name: Deploy app to Digital Ocean Server via Docker
+#          command: |
+#            ssh -o StrictHostKeyChecking=no root@hello.dpunks.org "/bin/bash ./deploy_app.sh ariv3ra/$IMAGE_NAME:$TAG"
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
