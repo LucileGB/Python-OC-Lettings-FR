@@ -50,7 +50,6 @@ workflows:
 
   master-deploy:
     jobs:
-      - build-and-push
+      - build-and-push:
         filters:
-          branches:
-            only: master
+          only: master
