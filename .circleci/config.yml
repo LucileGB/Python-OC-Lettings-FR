@@ -39,7 +39,7 @@ jobs:
       - run:
           name: Build and push docker image
           command: |
-            echo $DESPAIR
+            echo ${DESPAIR}
             TAG=${CIRCLE_BUILD_NUM}
             docker build -t lgarrigoux/oc_lettings:$TAG .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
