@@ -41,7 +41,7 @@ jobs:
           command: |
             TAG=${CIRCLE_BUILD_NUM}
             docker build -t lgarrigoux/oc_lettings:$TAG .
-            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+            echo $DOCKER_PASS | winpty docker login -u $DOCKER_USER --password-stdin
             docker push lgarrigoux/oc_lettings:$TAG
 
 
