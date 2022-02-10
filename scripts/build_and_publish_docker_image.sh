@@ -3,7 +3,7 @@
 set -e
 
 if [ "$CIRCLE_BRANCH" == "master" ]; then
-    TAG="latest";
+    TAG=$CIRCLE_BUILD_NUM;
 elif [ "$CIRCLE_BRANCH" != "master" ]; then
         TAG="latest"
 

@@ -34,10 +34,19 @@ jobs:
       - image: cimg/python:3.10.2
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
           name: Build and push docker image
-          command: ./scripts/build_and_publish_docker_image.sh
+          command: |
+          if [ "$CIRCLE_BRANCH" == "master" ]; then
+              TAG=$CIRCLE_BUILD_NUM;
+          elif [ "$CIRCLE_BRANCH" != "master" ]; then
+                  TAG="latest"
+
+          docker build -t lgarrigoux/oc_lettings:$TAG
+          echo $DOCKER_PASS | docker login - $DOCKER_USER --password-stdin
+          docker push lgarrigoux/oc_lettings:$TAG
 
 
 # Invoke jobs via workflows
