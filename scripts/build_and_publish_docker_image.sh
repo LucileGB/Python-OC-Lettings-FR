@@ -7,8 +7,6 @@ if [ "$CIRCLE_BRANCH" == "master" ]; then
 elif [ "$CIRCLE_BRANCH" != "master" ]; then
         TAG="latest"
 
-fi
-
 docker login --username $DOCKER_USER --password $DOCKER_PASS
 docker build -t lgarrigoux/oc_lettings:$TAG .
 docker push lgarrigoux/oc_lettings:$TAG
