@@ -42,7 +42,7 @@ jobs:
           if [ "$CIRCLE_BRANCH" == "master" ]; then
               TAG=$CIRCLE_BUILD_NUM;
           elif [ "$CIRCLE_BRANCH" != "master" ]; then
-                  TAG="latest"
+                  TAG="latest";
 
           docker build -t lgarrigoux/oc_lettings:$TAG
           echo $DOCKER_PASS | docker login - $DOCKER_USER --password-stdin
