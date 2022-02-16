@@ -11,7 +11,7 @@ RUN addgroup --system django \
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1 \
 PYTHONUNBUFFERED 1 \
-PORT=8000 
+PORT=8000
 
 # install dependencies
 RUN pip install --upgrade pip
@@ -24,4 +24,4 @@ COPY . /app
 RUN chown -R django:django /app
 USER django
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD gunicorn django_heroku.wsgi:application
