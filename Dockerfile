@@ -4,6 +4,10 @@ FROM python:3.8.3-alpine
 # set work directory
 WORKDIR /app
 
+# create a user
+RUN addgroup --system django \
+    && adduser --system --ingroup django django
+
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
