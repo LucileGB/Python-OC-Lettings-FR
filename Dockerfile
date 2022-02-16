@@ -9,8 +9,9 @@ RUN addgroup --system django \
     && adduser --system --ingroup django django
 
 # set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1 \
+PYTHONUNBUFFERED 1 \
+PORT=8000 
 
 # install dependencies
 RUN pip install --upgrade pip
@@ -19,8 +20,6 @@ RUN pip install -r requirements.txt
 
 # copy project
 COPY . /app
-
-EXPOSE 8000
 
 RUN chown -R django:django /app
 USER django
