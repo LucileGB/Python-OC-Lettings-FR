@@ -24,4 +24,4 @@ COPY . /app
 RUN chown -R django:django /app
 USER django
 
-CMD gunicorn django_heroku.wsgi:application
+CMD gunicorn oc_lettings_site.wsgi:application
