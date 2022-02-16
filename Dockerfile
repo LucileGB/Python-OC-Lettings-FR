@@ -2,7 +2,7 @@
 FROM python:3.8.3-alpine
 
 # set work directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -10,12 +10,15 @@ ENV PYTHONUNBUFFERED 1
 
 # install dependencies
 RUN pip install --upgrade pip
-COPY ./requirements.txt /usr/src/app
+COPY ./requirements.txt /app
 RUN pip install -r requirements.txt
 
 # copy project
-COPY . /usr/src/app
+COPY . /app
 
 EXPOSE 8000
+
+RUN chown -R django:django /app
+USER django
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
