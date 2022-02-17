@@ -44,8 +44,7 @@ jobs:
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push lgarrigoux/oc_lettings:$TAG
 
-  deploying:
-    machine: true
+  sentry:
     steps:
       - checkout
       - run:
@@ -58,6 +57,14 @@ jobs:
             sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps path-to-sourcemaps-if-applicable
             sentry-cli releases finalize $SENTRY_RELEASE
             sentry-cli releases deploys $SENTRY_RELEASE
+
+  deploying:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Deploy Docker image to Heroku
+          command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
             HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:login
             HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:push -a oc-lettings-9 web
@@ -79,6 +86,9 @@ workflows:
             branches:
               only:
                 - master
-      - deploying:
+      - sentry:
           requires:
             - build-and-push
+      - deploying:
+          requires:
+            - sentry
