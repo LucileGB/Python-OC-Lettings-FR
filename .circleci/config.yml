@@ -49,12 +49,12 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Deploy Docker image to Heroku
-        command: |
-          sudo curl https://cli-assets.heroku.com/install.sh | sh
-          HEROKU_API_KEY=${HEROKU_TOKEN} heroku container: login
-          HEROKU_API_KEY=${HEROKU_TOKEN} heroku container: push -a oc-lettings-9 web
-          HEROKU_API_KEY=${HEROKU_TOKEN} heroku container: release -a oc-lettings-9 web
+          name: Deploy Docker image to Heroku
+          command: |
+            sudo curl https://cli-assets.heroku.com/install.sh | sh
+            HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:login
+            HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:push -a oc-lettings-9 web
+            HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:release -a oc-lettings-9 web
 
 
 # Invoke jobs via workflows
@@ -72,4 +72,4 @@ workflows:
           only: master
       - deploying:
         requires:
-          build-and-push
+          - build-and-push
