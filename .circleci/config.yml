@@ -70,4 +70,6 @@ workflows:
       - build-and-push:
         filters:
           only: master
-      - deploying
+      - deploying:
+        requires:
+          build-and-push
