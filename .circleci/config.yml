@@ -30,6 +30,7 @@ jobs:
       - image: cimg/python:3.10.2
 
   build-and-push:
+    <<: *setting-up
     docker:
       - image: cimg/python:3.10.2
     steps:
@@ -43,6 +44,7 @@ jobs:
             docker build -t lgarrigoux/oc_lettings:$TAG .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push lgarrigoux/oc_lettings:$TAG
+
 
 
 # Invoke jobs via workflows
