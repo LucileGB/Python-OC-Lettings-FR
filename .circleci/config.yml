@@ -45,6 +45,7 @@ jobs:
             docker push lgarrigoux/oc_lettings:$TAG
 
   sentry:
+    machine: true
     steps:
       - checkout
       - run:
