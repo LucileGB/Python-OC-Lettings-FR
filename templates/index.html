@@ -4,7 +4,8 @@
 <div><a href="{% url 'lettings:index' %}">Lettings</a></div>
 
 {% if SECRET_KEY %}
-<p>{{SECRET_KEY}}</p>
+<p>Secret key: {{SECRET_KEY}}</p>
 {% else %}
 <p>Hélas...</p>
 {% endif %}
+<p>{{DEBUG}}</p>
