@@ -30,7 +30,6 @@ jobs:
       - image: cimg/python:3.10.2
 
   build-and-push:
-    <<: *setting-up
     docker:
       - image: cimg/python:3.10.2
     steps:
@@ -38,13 +37,24 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
-          name: Build and push docker image
+          name: Build and push Docker image
           command: |
             TAG=${CIRCLE_BUILD_NUM}
             docker build -t lgarrigoux/oc_lettings:$TAG .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push lgarrigoux/oc_lettings:$TAG
 
+  deploying:
+    machine: true
+    steps:
+      - checkout
+      - run:
+        name: Deploy Docker image to Heroku
+        command: |
+          sudo curl https://cli-assets.heroku.com/install.sh | sh
+          HEROKU_API_KEY=${HEROKU_TOKEN} heroku container: login
+          HEROKU_API_KEY=${HEROKU_TOKEN} heroku container: push -a oc-lettings-9 web
+          HEROKU_API_KEY=${HEROKU_TOKEN} heroku container: release -a oc-lettings-9 web
 
 
 # Invoke jobs via workflows
@@ -60,3 +70,4 @@ workflows:
       - build-and-push:
         filters:
           only: master
+      - deploying
