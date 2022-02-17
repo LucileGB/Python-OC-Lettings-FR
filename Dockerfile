@@ -11,9 +11,11 @@ RUN addgroup --system django \
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1 \
 PYTHONUNBUFFERED 1 \
-PORT=8000
+PORT=8000 \
+DEBUG="$DEBUG" \
+SECRET_KEY="$SECRET_KEY"
 ENV SENTRY_DNS "$SENTRY_DNS"
-RUN echo $SENTRY_DNS
+
 
 # install dependencies
 RUN pip install --upgrade pip
