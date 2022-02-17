@@ -2,10 +2,3 @@
 <h1>Welcome to Holiday Homes</h1>
 <div><a href="{% url 'profiles:index' %}">Profiles</a></div>
 <div><a href="{% url 'lettings:index' %}">Lettings</a></div>
-
-{% if SECRET_KEY %}
-<p>Secret key: {{SECRET_KEY}}</p>
-{% else %}
-<p>Hélas...</p>
-{% endif %}
-<p>Testons : {{DEBUG}}</p>
