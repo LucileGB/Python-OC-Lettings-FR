@@ -69,8 +69,9 @@ workflows:
     jobs:
       - build-and-push:
           filters:
-            only:
-              - master
+            branches:
+              only:
+                - master
       - deploying:
           requires:
             - build-and-push
