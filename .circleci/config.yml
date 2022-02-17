@@ -68,8 +68,7 @@ workflows:
   master-deploy:
     jobs:
       - build-and-push:
-        filters:
-          only: master
+          filters:only: master
       - deploying:
-        requires:
-          - build-and-push
+          requires:
+            - build-and-push
