@@ -1,7 +1,5 @@
-import pytest
-
-from django.core.management import call_command
 from django.urls import reverse
+
 
 def test_index_get(client):
     response = client.get(reverse('index'))

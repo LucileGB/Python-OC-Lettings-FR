@@ -1,7 +1,8 @@
 import os
+import sentry_sdk
 
-from pathlib import Path
 from decouple import config
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -120,9 +121,7 @@ STATICFILES_DIRS = [
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
-
+# SENTRY INTEGRATION
 sentry_sdk.init(
     dsn=config('SENTRY_DNS', default='theSecretestKey'),
     integrations=[DjangoIntegration()],

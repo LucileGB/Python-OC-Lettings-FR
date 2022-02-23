@@ -73,5 +73,10 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 
 Utilisation de PowerShell, comme ci-dessus sauf :
 
-- Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
+- Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1`
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+#### Lancer 
+
+- `cd /path/to/Python-OC-Lettings-FR`
+- Ouvrir une session shell `sqlite3`
