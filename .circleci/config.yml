@@ -46,8 +46,10 @@ jobs:
             TAG=${CIRCLE_BUILD_NUM}
             docker build -t lgarrigoux/oc_lettings:$TAG .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker push lgarrigoux/oc_lettings:$TAG
+            docker tag lgarrigoux/oc_lettings:latest lgarrigoux/oc_lettings:$TAG
             docker push lgarrigoux/oc_lettings:latest
+            docker push lgarrigoux/oc_lettings:$TAG
+
 
   sentry:
     machine: true
