@@ -122,9 +122,8 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # SENTRY INTEGRATION
-if DEBUG is False:
-    sentry_sdk.init(
-        dsn=config('SENTRY_DSN', default="secretkey"),
-        integrations=[DjangoIntegration()],
-        traces_sample_rate=1.0,
-    )
+sentry_sdk.init(
+    dsn=config('SENTRY_DSN', default="secretkey"),
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
+)
