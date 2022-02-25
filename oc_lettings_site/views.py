@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from .settings import SENTRY_DSN
 
 def index(request):
     """
@@ -12,4 +12,4 @@ def index(request):
     pellentesque iaculis enim cursus in. Praesent volutpat porttitor magna, non
     finibus neque cursus id.
     """
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'SENTRY_DSN'=SENTRY_DSN})
