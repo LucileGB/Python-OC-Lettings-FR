@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from decouple import config
+
 
 def index(request):
     """
@@ -12,5 +12,4 @@ def index(request):
     pellentesque iaculis enim cursus in. Praesent volutpat porttitor magna, non
     finibus neque cursus id.
     """
-    sentry = config('SENTRY_DSN', default="secretkey")
-    return render(request, 'index.html', {'SENTRY_DSN':sentry})
+    return render(request, 'index.html')
