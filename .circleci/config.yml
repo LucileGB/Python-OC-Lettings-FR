@@ -63,7 +63,7 @@ jobs:
             sentry-cli releases set-commits $SENTRY_RELEASE --auto
             sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps path-to-sourcemaps-if-applicable
             sentry-cli releases finalize $SENTRY_RELEASE
-#            sentry-cli releases deploys $SENTRY_RELEASE
+            sentry-cli releases deploys $SENTRY_RELEASE
 
   deploying:
     machine: true
