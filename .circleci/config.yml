@@ -22,7 +22,7 @@ aliases:
           command: pytest
       - run:
           name: Linting
-          # This assumes pytest is installed via the install-package step above
+          # This assumes flake8 is installed via the install-package step above
           command: flake8
 
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
