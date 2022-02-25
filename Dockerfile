@@ -9,8 +9,8 @@ RUN addgroup --system django \
     && adduser --system --ingroup django django
 
 # set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1 \
+PYTHONUNBUFFERED 1
 ENV PORT=8000
 ENV SENTRY_DNS "$SENTRY_DNS"
 
